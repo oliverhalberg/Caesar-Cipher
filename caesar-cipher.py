@@ -19,9 +19,11 @@
 # }
 
 def int_to_char(val: int) -> str:
+    """Given an uppercase character, A-Z, returns its equivalent value, 1-26"""
     return chr(val + 64)
 
 def char_to_int(char: str) -> int:
+    """Given a value, 1-26, returns its equivalent uppercase character, A-Z"""
     return (ord(char) - 64)
 
 def shift(text: str, val: int) -> str:
