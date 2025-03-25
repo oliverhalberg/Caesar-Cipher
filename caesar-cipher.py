@@ -23,6 +23,8 @@ from tkinter import ttk
 
 # Logic
 
+# Helper functions
+
 def int_to_char(val: int) -> str:
     """Given an uppercase character, A-Z, returns its equivalent value, 1-26"""
     return chr(val + 64)
@@ -31,8 +33,10 @@ def char_to_int(char: str) -> int:
     """Given a value, 1-26, returns its equivalent uppercase character, A-Z"""
     return (ord(char) - 64)
 
+# Shift algorithm (iterative)
 def shift(text: str, val: int) -> str:
-    """Takes in a string of text and shifts that text by the given value"""
+    """Takes in a string of text and an integer value. Returns the string of text 
+       with each non-whitespace character shifted by the value"""
     result = ''
     text = text.upper()
     for char in text:
@@ -48,6 +52,26 @@ def shift(text: str, val: int) -> str:
             result += char
     return result
 
+# Recursive version of shift algorithm
+def shift_rec(text: str, val: int) -> str:
+    """Takes in a string of text and an integer value. Returns the string of text 
+       with each non-whitespace character shifted by the value"""
+    length = len(text)
+    if (length == 1):
+        if text in [' ', '\n', '\t']:
+            return text
+        else:
+            curVal = char_to_int(text)
+            newVal = curVal + val
+            # this will probably be handled in the GUI (only certain values accepted) but it's still a good check for now
+            if (newVal > 26):
+                newVal -= 26
+            return int_to_char(newVal)
+    else:
+        midpoint = int(length/2)
+        return shift_rec(text[:midpoint], val) + shift_rec(text[midpoint:], val)
+
+
 # GUI
 
 root = Tk()
@@ -58,4 +82,7 @@ root.title("Caesar Cipher")
 print("testing: ")
 print("Plaintext: TEST WORDS GO HERE. Value: 3")
 print("Ciphertext: " + shift("TEST WORDS GO HERE", 3))
+print("testing (recursive): ")
+print("Plaintext: TEST WORDS GO HERE. Value: 3")
+print("Ciphertext: " + shift_rec("TEST WORDS GO HERE", 3))
         
