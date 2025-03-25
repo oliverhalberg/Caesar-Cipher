@@ -36,21 +36,26 @@ def shift(text: str, val: int) -> str:
     result = ''
     text = text.upper()
     for char in text:
-        curVal = char_to_int(char)
-        newVal = curVal + val
-        # this will probably be handled in the GUI (only certain values accepted) but it's still a good check for now
-        if (newVal > 26):
-            newVal -= 26
-        result += int_to_char(newVal)
+        # only shift non-whitespace characters
+        if (char not in [' ', '\n', '\t']):
+            curVal = char_to_int(char)
+            newVal = curVal + val
+            # this will probably be handled in the GUI (only certain values accepted) but it's still a good check for now
+            if (newVal > 26):
+                newVal -= 26
+            result += int_to_char(newVal)
+        else:
+            result += char
     return result
 
 # GUI
+
 root = Tk()
 root.title("Caesar Cipher")
 
 
 # For testing
 print("testing: ")
-print("Plaintext: TEST. Value: 3")
-print("Ciphertext: " + shift("TEST", 3))
+print("Plaintext: TEST WORDS GO HERE. Value: 3")
+print("Ciphertext: " + shift("TEST WORDS GO HERE", 3))
         
