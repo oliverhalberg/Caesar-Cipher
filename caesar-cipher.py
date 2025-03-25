@@ -52,7 +52,7 @@ def shift(text: str, val: int) -> str:
             result += char
     return result
 
-# Recursive version of shift algorithm
+# Shift algorithm (recursive)
 def shift_rec(text: str, val: int) -> str:
     """Takes in a string of text and an integer value. Returns the string of text 
        with each non-whitespace character shifted by the value"""
