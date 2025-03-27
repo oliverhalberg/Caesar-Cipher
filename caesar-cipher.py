@@ -3,6 +3,7 @@
 # Imports
 from tkinter import *
 from tkinter import ttk
+import re
 
 # Hardcoded alphabet reference (no longer used but included for now)
 # charToInt = {
@@ -38,13 +39,14 @@ def shift(text: str, val: int) -> str:
     """Takes in a string of text and an integer value. Returns the string of text 
        with each non-whitespace character shifted by the value"""
     result = ''
+    # have this handled before the call in the final version
     text = text.upper()
     for char in text:
         # only shift non-whitespace characters
-        if (char not in [' ', '\n', '\t']):
+        if (re.match(r"\S", char)):
             curVal = char_to_int(char)
             newVal = curVal + val
-            # this will probably be handled in the GUI (only certain values accepted) but it's still a good check for now
+            # handles wraparound
             if (newVal > 26):
                 newVal -= 26
             result += int_to_char(newVal)
@@ -56,17 +58,20 @@ def shift(text: str, val: int) -> str:
 def shift_rec(text: str, val: int) -> str:
     """Takes in a string of text and an integer value. Returns the string of text 
        with each non-whitespace character shifted by the value"""
+    # have this handled before the call in the final version
+    text = text.upper()
     length = len(text)
     if (length == 1):
-        if text in [' ', '\n', '\t']:
-            return text
-        else:
+        # only shift non-whitespace characters
+        if (re.match(r"\S", text)):
             curVal = char_to_int(text)
             newVal = curVal + val
-            # this will probably be handled in the GUI (only certain values accepted) but it's still a good check for now
+            # handles wraparound
             if (newVal > 26):
                 newVal -= 26
             return int_to_char(newVal)
+        else:
+            return text
     else:
         midpoint = int(length/2)
         return shift_rec(text[:midpoint], val) + shift_rec(text[midpoint:], val)
@@ -80,9 +85,13 @@ root.title("Caesar Cipher")
 
 # For testing
 print("testing: ")
-print("Plaintext: TEST WORDS GO HERE. Value: 3")
-print("Ciphertext: " + shift("TEST WORDS GO HERE", 3))
+print("Plaintext: TEST WORDS GO HERE! Value: 3")
+print("Ciphertext: " + shift("TEST WORDS GO HERE!", 3))
 print("testing (recursive): ")
-print("Plaintext: TEST WORDS GO HERE. Value: 3")
-print("Ciphertext: " + shift_rec("TEST WORDS GO HERE", 3))
+print("Plaintext: TEST WORDS GO HERE! Value: 3")
+print("Ciphertext: " + shift_rec("TEST WORDS GO HERE!", 3))
+print("numbers test: ")
+print("Plaintext: The answer is 42? Value: 5")
+print("Ciphertext: " + shift("The answer is 42?", 5))
+print("Ciphertext (rec): " + shift_rec("The answer is 42?", 5))
         
