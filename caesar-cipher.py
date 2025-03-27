@@ -48,10 +48,10 @@ def shift_it(text: str, val: int) -> str:
             # acceptable value range: between 33 and 126, inclusive
             if(newVal > 126):
                 # this should wrap around so that 127 becomes 33, etc.
-                newVal += (94)
+                newVal -= (94)
             elif(newVal < 33):
                 # this should wrap around so that 32 becomes 126, etc.
-                newVal -= (-94)
+                newVal += (94)
             result += int_to_char(newVal)
         else:
             result += char
@@ -84,6 +84,8 @@ def shift_rec(text: str, val: int) -> str:
 
 # Shift function, performs data cleaning
 def shift(text: str, val: int) -> str:
+    if (not text.isascii()):
+        return "Error: non-ASCII characters present"
     text = ascii(text).rstrip('\'').lstrip('\'')
     return shift_it(text, val)
 
@@ -104,8 +106,9 @@ print("Plaintext: The answer is 42? Value: 5")
 print("Ciphertext: " + shift("The answer is 42?", 5))
 print("reverse test: " + shift("Ymj fsx|jw nx 97D", -5))
 print("error check: ")
-print("Plaintext: {Test | ç} Value: 5")
-print("Ciphertext: " + shift("{Test | }", 3))
-print("reverse error check: ")
-print(shift("fYP^_ g h", -3))
+print("Plaintext: {Test | ç} Value: 3")
+print("Ciphertext: " + shift("{Test | ç}", 3))
+print("Plaintext: {Hi} Value: 16")
+print("Ciphertext: " + shift("{Hi}", 16))
+print("reverse test: " + shift("-Xy/", -16))
         
