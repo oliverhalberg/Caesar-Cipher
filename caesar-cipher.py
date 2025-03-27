@@ -27,28 +27,31 @@ import re
 # Helper functions
 
 def int_to_char(val: int) -> str:
-    """Given an uppercase character, A-Z, returns its equivalent value, 1-26"""
-    return chr(val + 64)
+    """Given an ASCII value as an integer, returns the character it represents"""
+    return chr(val )
 
 def char_to_int(char: str) -> int:
-    """Given a value, 1-26, returns its equivalent uppercase character, A-Z"""
-    return (ord(char) - 64)
+    """Given a character, returns the corresponding ASCII value as an integer"""
+    return (ord(char))
 
 # Shift algorithm (iterative)
-def shift(text: str, val: int) -> str:
+def shift_it(text: str, val: int) -> str:
     """Takes in a string of text and an integer value. Returns the string of text 
        with each non-whitespace character shifted by the value"""
     result = ''
-    # have this handled before the call in the final version
-    text = text.upper()
     for char in text:
         # only shift non-whitespace characters
         if (re.match(r"\S", char)):
             curVal = char_to_int(char)
             newVal = curVal + val
             # handles wraparound
-            if (newVal > 26):
-                newVal -= 26
+            # acceptable value range: between 33 and 126, inclusive
+            if(newVal > 126):
+                # this should wrap around so that 127 becomes 33, etc.
+                newVal += (94)
+            elif(newVal < 33):
+                # this should wrap around so that 32 becomes 126, etc.
+                newVal -= (-94)
             result += int_to_char(newVal)
         else:
             result += char
@@ -58,8 +61,6 @@ def shift(text: str, val: int) -> str:
 def shift_rec(text: str, val: int) -> str:
     """Takes in a string of text and an integer value. Returns the string of text 
        with each non-whitespace character shifted by the value"""
-    # have this handled before the call in the final version
-    text = text.upper()
     length = len(text)
     if (length == 1):
         # only shift non-whitespace characters
@@ -67,14 +68,24 @@ def shift_rec(text: str, val: int) -> str:
             curVal = char_to_int(text)
             newVal = curVal + val
             # handles wraparound
-            if (newVal > 26):
-                newVal -= 26
+            # acceptable value range: between 33 and 126, inclusive
+            if(newVal > 126):
+                # this should wrap around so that 127 becomes 33, etc.
+                newVal += (94)
+            elif(newVal < 33):
+                # this should wrap around so that 32 becomes 126, etc.
+                newVal -= (-94)
             return int_to_char(newVal)
         else:
             return text
     else:
         midpoint = int(length/2)
         return shift_rec(text[:midpoint], val) + shift_rec(text[midpoint:], val)
+
+# Shift function, performs data cleaning
+def shift(text: str, val: int) -> str:
+    text = ascii(text).rstrip('\'').lstrip('\'')
+    return shift_it(text, val)
 
 
 # GUI
@@ -87,11 +98,14 @@ root.title("Caesar Cipher")
 print("testing: ")
 print("Plaintext: TEST WORDS GO HERE! Value: 3")
 print("Ciphertext: " + shift("TEST WORDS GO HERE!", 3))
-print("testing (recursive): ")
-print("Plaintext: TEST WORDS GO HERE! Value: 3")
-print("Ciphertext: " + shift_rec("TEST WORDS GO HERE!", 3))
+print("reverse test: " + shift("WHVW ZRUGV JR KHUH$", -3))
 print("numbers test: ")
 print("Plaintext: The answer is 42? Value: 5")
 print("Ciphertext: " + shift("The answer is 42?", 5))
-print("Ciphertext (rec): " + shift_rec("The answer is 42?", 5))
+print("reverse test: " + shift("Ymj fsx|jw nx 97D", -5))
+print("error check: ")
+print("Plaintext: {Test | ç} Value: 5")
+print("Ciphertext: " + shift("{Test | }", 3))
+print("reverse error check: ")
+print(shift("fYP^_ g h", -3))
         
