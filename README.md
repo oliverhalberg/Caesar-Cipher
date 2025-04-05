@@ -9,6 +9,12 @@ Currently, the program is only available in the form of a Python script, `caesar
 - A Python installation
 - Tkinter 8.5/8.6 (most Python installations should include this; run `python -m tkinter` in your terminal of choice to display a window listing your installed version). This program was written with Tkinter 8.6; some features might not work with older Tkinter versions.
 
+### Instructions
+To use this program, enter the text that you wish to shift in the left-hand text box, select the shift value from the dropdown menu, and click the "Go" button. The shifted text will appear in the right-hand text box.
+
+### Limitations
+Only ASCII characters are supported.
+
 ## Resources consulted
 - TkDocs' basic [tutorial](https://tkdocs.com/tutorial/firstexample.html)
 - TkDocs: [Combobox](https://tkdocs.com/tutorial/widgets.html#combobox) and [Text](https://tkdocs.com/tutorial/text.html) widget documentation
