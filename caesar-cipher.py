@@ -91,7 +91,7 @@ def compute(*args):
             shift_int = int(shiftval.get())
         except ValueError:
             txt_result.insert('1.0', 'Please select a shift value')
-            pass
+            return
         txt_result.insert('1.0', shift(txt_entry.get('1.0', 'end').rstrip('\n'), shift_int))
     except ValueError:
         txt_result.insert('1.0', 'An error occurred during computation!')
