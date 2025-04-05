@@ -2,6 +2,8 @@
 
 A small program written for fun and for the purposes of learning the Tkinter library.
 
+## Current status: Working GUI, program should work but may still be buggy.
+
 ## How to use this program
 Currently, the program is only available in the form of a Python script, `caesar-cipher.py`. Running this script on any system with Python installed will launch the program.
 
