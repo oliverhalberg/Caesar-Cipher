@@ -20,4 +20,5 @@ Only ASCII characters are supported.
 ## Resources consulted
 - TkDocs' basic [tutorial](https://tkdocs.com/tutorial/firstexample.html)
 - TkDocs: [Combobox](https://tkdocs.com/tutorial/widgets.html#combobox) and [Text](https://tkdocs.com/tutorial/text.html) widget documentation
+- User `Matt J`'s response on this Stack Overflow [thread](https://stackoverflow.com/questions/227459/how-to-get-the-ascii-value-of-a-character)
 
