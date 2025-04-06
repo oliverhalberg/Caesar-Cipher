@@ -6,7 +6,7 @@ from tkinter import ttk
 import re
 
 # Variables
-num_ranges = ['0', '25', '24', '23', '22', '21', '20', '19', '18', '17', '16', '15', 
+num_ranges = ['25', '24', '23', '22', '21', '20', '19', '18', '17', '16', '15', 
               '14', '13', '12', '10', '9', '8', '7', '6', '5', '4', '3', '2', '1', 
               '-1', '-2', '-3', '-4', '-5', '-6', '-7', '-8', '-9', '-10',
               '-11', '-12', '-13', '-14', '-15', '-16', '-17', '-18', '-19', '-20',
@@ -113,7 +113,6 @@ mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 
-
 # Text widget for entry
 txt_entry = Text(mainframe, width=40, height=10)
 # wrap text at any character
@@ -148,21 +147,4 @@ for child in mainframe.winfo_children():
 txt_entry.focus()
 
 # Start event loop
-root.mainloop()
-
-# For testing
-# print("testing: ")
-# print("Plaintext: TEST WORDS GO HERE! Value: 3")
-# print("Ciphertext: " + shift("TEST WORDS GO HERE!", 3))
-# print("reverse test: " + shift("WHVW ZRUGV JR KHUH$", -3))
-# print("numbers test: ")
-# print("Plaintext: The answer is 42? Value: 5")
-# print("Ciphertext: " + shift("The answer is 42?", 5))
-# print("reverse test: " + shift("Ymj fsx|jw nx 97D", -5))
-# print("error check: ")
-# print("Plaintext: {Test | ç} Value: 3")
-# print("Ciphertext: " + shift("{Test | ç}", 3))
-# print("Plaintext: {Hi} Value: 16")
-# print("Ciphertext: " + shift("{Hi}", 16))
-# print("reverse test: " + shift("-Xy/", -16))
-        
+root.mainloop()       
