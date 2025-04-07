@@ -5,7 +5,7 @@ from tkinter import *
 from tkinter import ttk
 import re
 
-# Variables
+# Global variables
 num_ranges = ['25', '24', '23', '22', '21', '20', '19', '18', '17', '16', '15', 
               '14', '13', '12', '10', '9', '8', '7', '6', '5', '4', '3', '2', '1', 
               '-1', '-2', '-3', '-4', '-5', '-6', '-7', '-8', '-9', '-10',
@@ -83,7 +83,8 @@ def shift(text: str, val: int) -> str:
 
 # Main computation function; interacts with GUI elements to call shift()
 def compute(*args):
-    """Retrieves values from the GUI elements to perform the shift computation"""
+    """Retrieves values from the GUI elements to perform the shift computation. 
+       Updates the result window with the result of the computation."""
     # clear result window
     txt_result.delete('1.0', 'end')
     try:
