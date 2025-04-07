@@ -1,6 +1,6 @@
 # Caesar-Cipher
 
-A small program written for fun and for the purposes of learning the Tkinter library.
+A small program written for fun and for the purposes of learning the basics of the Tkinter library.
 
 ## Current status: Stable and functioning, but some bugs may still be present.
 
