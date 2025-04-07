@@ -2,7 +2,7 @@
 
 A small program written for fun and for the purposes of learning the Tkinter library.
 
-## Current status: Working GUI, program should work but may still be buggy.
+## Current status: Stable and functioning, but some bugs may still be present.
 
 ## How to use this program
 Currently, the program is only available in the form of a Python script, `caesar-cipher.py`. Running this script on any system with Python installed will launch the program.
@@ -22,3 +22,5 @@ Only ASCII characters are supported.
 - TkDocs: [Combobox](https://tkdocs.com/tutorial/widgets.html#combobox) and [Text](https://tkdocs.com/tutorial/text.html) widget documentation
 - User `Matt J`'s response on this Stack Overflow [thread](https://stackoverflow.com/questions/227459/how-to-get-the-ascii-value-of-a-character)
 
+## Changelog
+- v1.0 (April 7, 2025): Full working version.
